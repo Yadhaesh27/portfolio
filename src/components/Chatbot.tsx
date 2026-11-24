@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUp, Bot, ChevronDown, MessageCircle, Sparkles, X } from 'lucide-react';
-import { profile, projects, publicRepos } from '../data/profile';
+import { profile, projects, publicRepos, skillGroups, certifications } from '../data/profile';
 
 type Message = { from: 'bot' | 'user'; content: string };
 const suggestions = ['What does he build?', 'Tell me about his internship', 'What skills does he know?', 'How can I contact him?'];
@@ -11,19 +11,20 @@ function answer(query: string): string {
   const q = query.toLowerCase();
   if (/hello|^hi\b|hey|good morning/.test(q)) return "Hello! I'm here to help you explore Yadhaeshwar's engineering work. Try asking about projects, his internship, skills, or contact details.";
   if (/contact|email|reach|hire|linkedin|phone|connect/.test(q)) return `You can contact Yadhaeshwar at ${profile.email}. His LinkedIn: linkedin.com/in/yadhaeshwar-s and GitHub: github.com/Yadhaesh27.`;
-  if (/intern|experience|digiplus|work(ed)?/.test(q)) return 'He was a React JS Trainee Intern at Digiplus Agency from May to July 2025. His resume describes 15+ reusable React components and responsive UI work across three production projects.';
-  if (/skill|stack|language|technology|technologies|tools|know/.test(q)) return 'His toolkit includes Python, Java, JavaScript, TypeScript, SQL, React, Tailwind CSS, FastAPI, REST APIs, RAG, OCR, digital forensics, Docker, Git and Azure basics.';
+  if (/intern|experience|digiplus/.test(q)) return 'He was a React JS Trainee Intern at Digiplus Agency from May to July 2025. His resume describes 15+ reusable React components and responsive UI work across three production projects.';
+  if (/skill|stack|language|technology|technologies|tools|know/.test(q)) return `His toolkit includes ${skillGroups.flatMap(group => group.items).join(', ')}.`;
   if (/github|repo|open.source|public/.test(q)) return `His GitHub username is ${profile.githubUsername}. ${publicRepos.length} public repositories were verified when this site was built: ${publicRepos.map(r => r.name).join(', ')}. The live count may change.`;
   if (/clientflow|client flow/.test(q)) return `${projects[0].title} is a multi-tenant client workspace built with React, FastAPI and Gemini AI, supporting Kanban workflows, versioned approvals, and live AI assistance.`;
-  if (/forensic|cyber|evidence|security/.test(q)) return 'AI Cyber Forensics is his digital investigation platform. It focuses on evidence intake, SHA-256 integrity verification, OCR, chain of custody and AI-assisted retrieval. The public repository contains its implementation.';
+  if (/forensic|cyber|evidence|security/.test(q) && !/justra|legal|apex|devops/.test(q)) return 'AI Cyber Forensics is his digital investigation platform. It focuses on evidence intake, SHA-256 integrity verification, OCR, chain of custody and AI-assisted retrieval. The public repository contains its implementation.';
   if (/drainage|iot|computer vision/.test(q)) return 'Smart Drainage is a resume-featured project exploring IoT and computer-vision-based anomaly monitoring with a web dashboard and alert workflow.';
   if (/aegis|traffic|emergency/.test(q)) return 'AEGIS AI is an additional project exploring emergency-vehicle prioritization and traffic routing through a React command center, FastAPI and NetworkX.';
-  if (/justra|legal/.test(q)) return 'JUSTRA is a legal-guidance product concept exploring multilingual AI assistance, retrieval, OCR and document workflows. It is not presented as a deployed legal service.';
-  if (/apex|devops|agent|incident/.test(q)) return 'APEX AI is an AI-driven DevOps incident response agent currently in planning, focusing on triage, hypotheses, tool integration and human-approved actions.';
-  if (/project|build|portfolio|do(es)? he/.test(q)) return `He works on AI-powered applications and full-stack systems. Featured work includes ClientFlow AI, AI Cyber Forensics and Smart Drainage. Additional work includes AEGIS AI, JUSTRA and APEX AI. Open any project card for a case study.`;
-  if (/education|study|college|graduat|cgpa|degree/.test(q)) return 'He is pursuing B.E. Computer Science Engineering at K. Ramakrishnan College of Technology (September 2023 – April 2027). His uploaded resume reports a CGPA of 6.9/10.';
-  if (/award|hackathon|achieve|certif|wipro|japanese/.test(q)) return 'Highlights include winning the Syntax2Code hackathon, internal selection for Smart India Hackathon, zonal-level badminton, a Wipro .NET certificate, Japanese N5.1 qualification, and Azure/Cybersecurity certificates.';
-  if (/resume|cv|download/.test(q)) return `His original one-page resume is available through the Download Resume button in the navigation. File path: ${profile.resume}.`;
+  if (/justra|legal/.test(q)) return 'JUSTRA AI is a completed privacy-centric mobile legal guidance app launched on Google Play, with English/Tamil voice interaction, dispute-resolution workflows, heuristic scam detection and a biometric vault with local AES-256 encryption.';
+  if (/apex|devops|agent|incident/.test(q)) return 'APEX AI is an in-progress DevOps incident response agent for application and server monitoring, incident triage and evidence-based root-cause investigation. Log and metric analysis, remediation recommendations and approval-gated recovery are planned.';
+  if (/project|build|portfolio|do(es)? he/.test(q)) return `He works on AI-powered applications and full-stack systems. Resume projects include ClientFlow AI, AI-Cyber-Forensics, JUSTRA AI, AI-Based Smart Drainage Monitoring and APEX AI (in progress). AEGIS AI is additional work. Open any project card for a case study.`;
+  if (/education|study|college|graduat|cgpa|degree/.test(q)) return 'He is pursuing B.E. Computer Science Engineering at K. Ramakrishnan College of Technology (September 2023 – April 2027). His current resume reports a CGPA of 6.9/10 and zero standing arrears.';
+  if (/certif|wipro|japanese|aws|training/.test(q)) return `His certifications and training: ${certifications.join('; ')}.`;
+  if (/award|hackathon|achieve/.test(q)) return 'Highlights include winning the Syntax2Code hackathon, internal selection for Smart India Hackathon, zonal-level badminton, a Wipro .NET certificate, Japanese N5.1 qualification, and Azure/Cybersecurity certificates.';
+  if (/resume|cv|download/.test(q)) return `A downloadable resume is available through the Download Resume button in the navigation. File path: ${profile.resume}.`;
   return "I only answer from the portfolio's verified information — I'm a built-in knowledge assistant, not a connected LLM. Ask about projects, internship, skills, education, achievements or contact details.";
 }
 

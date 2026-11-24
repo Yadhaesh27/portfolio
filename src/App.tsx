@@ -101,7 +101,7 @@ function Hero() {
     <div className="container hero-inner">
       <div className="hero-copy">
         <Reveal><div className="availability"><span className="status-dot" /><span>AVAILABLE FOR OPPORTUNITIES</span><span className="availability-arrow">↗</span></div></Reveal>
-        <Reveal delay={0.08}><div className="hero-kicker"><span className="kicker-sigil">//</span> AI ENGINEER <span className="kicker-divider">×</span> SOFTWARE DEVELOPER</div>
+        <Reveal delay={0.08}><div className="hero-kicker"><span className="kicker-sigil">//</span> FINAL-YEAR CSE STUDENT <span className="kicker-divider">×</span> AI &amp; SOFTWARE DEVELOPMENT</div>
           <h1>Crafting code.<br /><span className="gradient-text">Creating</span><br /><span className="gradient-text">intelligence.</span></h1></Reveal>
         <Reveal delay={0.15}><p className="hero-lede">Hi, I'm <strong>Yadhaeshwar S.</strong> I transform ambitious ideas into intelligent, human-centered software — from AI-powered investigations to full-stack systems.</p></Reveal>
         <Reveal delay={0.21}><div className="hero-cta"><Link className="btn btn-primary" to="/#projects">Explore my work <ArrowUpRight size={17} /></Link><a className="btn btn-secondary" href={profile.resume} download="Yadhaeshwar_S_Resume.pdf">Download resume <Download size={16} /></a></div></Reveal>
@@ -167,7 +167,7 @@ function Projects() {
     <SectionIntro number="02" tag="SELECTED WORK / PROJECT INDEX" title="Ideas, shipped" accent="into reality." description="An evolving collection of meaningful builds — from intelligent workspaces and digital forensics to experimental systems." />
     <Reveal><div className="projects-toolbar"><div className="filter-list" role="group" aria-label="Filter projects by category">{filters.map(f => <button key={f} onClick={() => setFilter(f)} className={filter === f ? 'active' : ''} aria-pressed={filter === f}>{f}{f === 'All' && <sup>{projects.length.toString().padStart(2, '0')}</sup>}</button>)}</div><span className="project-count">DISPLAYING {visible.length.toString().padStart(2, '0')} / {projects.length.toString().padStart(2, '0')}</span></div></Reveal>
     <div className="projects-grid"><AnimatePresence mode="popLayout">{visible.map((p, i) => <motion.div layout key={p.slug} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.97 }} transition={{ duration: 0.22 }}><ProjectCard project={p} index={i} /></motion.div>)}</AnimatePresence></div>
-    <Reveal><div className="projects-notice"><ShieldCheck size={17} /><p><strong>Transparency matters.</strong> The first three projects are featured in my resume. Other projects are additional work or concepts, with their status clearly identified. Verified source links appear only where repositories are public.</p></div></Reveal>
+    <Reveal><div className="projects-notice"><ShieldCheck size={17} /><p><strong>Transparency matters.</strong> The first five projects are featured in my resume, including APEX AI, which is in progress. AEGIS AI is additional portfolio work. Verified source links appear only where repositories are public.</p></div></Reveal>
   </div></section>;
 }
 
@@ -211,12 +211,12 @@ function Skills() {
 function Journey() {
   return <section className="section journey-section" id="journey"><div className="container"><SectionIntro number="05" tag="THE JOURNEY / GROWTH.LOG" title="Still learning." accent="Always building." />
     <div className="journey-grid"><div className="timeline">
-      <Reveal className="timeline-event"><div className="timeline-dot" /><div className="timeline-date">MAY — JUL 2025 <span>EXPERIENCE</span></div><h3>React JS Trainee Intern</h3><div className="timeline-org">Digiplus Agency</div><p>Engineered 15+ reusable React components and responsive interfaces across three production projects, with a focus on modern JavaScript, cross-browser UI and dynamic interactions.</p></Reveal>
+      <Reveal className="timeline-event"><div className="timeline-dot" /><div className="timeline-date">MAY — JUL 2025 <span>EXPERIENCE</span></div><h3>React JS Trainee Intern</h3><div className="timeline-org">Digiplus Agency</div><p>Engineered 15+ reusable React components and responsive interfaces across three production projects, using JavaScript, HTML5, CSS3, state management and DOM manipulation.</p></Reveal>
       <Reveal className="timeline-event" delay={0.05}><div className="timeline-dot" /><div className="timeline-date">2026 <span>ACHIEVEMENT</span></div><h3>Syntax2Code Hackathon Winner</h3><div className="timeline-org">CodeTantra</div><p>Won first place in the hackathon and received an internship offer.</p></Reveal>
       <Reveal className="timeline-event" delay={0.09}><div className="timeline-dot" /><div className="timeline-date">2026 <span>SELECTION</span></div><h3>Smart India Hackathon</h3><div className="timeline-org">Institutional selection</div><p>Selected internally for the official national submission process.</p></Reveal>
       <Reveal className="timeline-event" delay={0.13}><div className="timeline-dot" /><div className="timeline-date">SEP 2023 — APR 2027 <span>EDUCATION</span></div><h3>B.E. Computer Science Engineering</h3><div className="timeline-org">K. Ramakrishnan College of Technology</div><p>Building foundations in data structures, web development, software engineering and object-oriented programming.</p></Reveal>
-    </div><div className="journey-aside"><Reveal><div className="journey-info-card"><GraduationCap size={25} /><div><span>EDUCATION STATUS</span><strong>Class of '27</strong><small>Computer Science Engineering<br />CGPA: {profile.cgpa} (per resume)</small></div></div></Reveal>
-      <Reveal delay={0.08}><div className="credentials-card"><div className="credentials-heading"><Award size={21} /><span>CERTIFICATES & MILESTONES</span></div>{certifications.map(item => <div className="credential" key={item}><Check size={15} /><span>{item}</span></div>)}<div className="credentials-extra"><Sparkles size={16} /> Zonal-level badminton player</div></div></Reveal>
+    </div><div className="journey-aside"><Reveal><div className="journey-info-card"><GraduationCap size={25} /><div><span>EDUCATION STATUS</span><strong>Class of '27</strong><small>Computer Science Engineering<br />CGPA: {profile.cgpa}<br />Standing arrears: {profile.standingArrears}</small></div></div></Reveal>
+      <Reveal delay={0.08}><div className="credentials-card"><div className="credentials-heading"><Award size={21} /><span>CERTIFICATIONS & TRAINING</span></div>{certifications.map(item => <div className="credential" key={item}>{item.includes('(In Progress)') ? <CircleDot size={15} /> : <Check size={15} />}<span>{item}</span></div>)}<div className="credentials-extra"><Sparkles size={16} /> Zonal-level badminton player</div></div></Reveal>
     </div></div>
   </div></section>;
 }
@@ -233,7 +233,7 @@ function Contact() {
 }
 
 function HomePage() {
-  useEffect(() => { document.title = 'Yadhaeshwar S — AI & Software Engineer | Portfolio 2.0'; }, []);
+  useEffect(() => { document.title = 'Yadhaeshwar S — Final-year CSE Student | AI & Software Development'; }, []);
   return <><Hero /><Marquee /><About /><Projects /><GitHubPanel /><Skills /><Journey /><Contact /></>;
 }
 

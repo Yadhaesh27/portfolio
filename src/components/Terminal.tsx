@@ -18,9 +18,9 @@ export function Terminal() {
   const navigate = useNavigate();
   const outputs: Record<string, string> = {
     help: 'Commands: help, whoami, skills, projects, resume, contact, github, clear',
-    whoami: 'Yadhaeshwar S / AI & Software Engineer / Tamil Nadu, India',
+    whoami: 'Yadhaeshwar S / Final-year CSE Student / AI & Software Development / Tamil Nadu, India',
     skills: 'Python · React · FastAPI · RAG · JavaScript · SQL · Digital Forensics',
-    projects: 'ClientFlow AI · AI Cyber Forensics · Smart Drainage · AEGIS AI · JUSTRA · APEX AI',
+    projects: 'ClientFlow AI · AI-Cyber-Forensics · JUSTRA AI (Launched on Google Play) · Smart Drainage · APEX AI (In Progress) · AEGIS AI (Additional)',
     contact: `${profile.email} | ${profile.linkedin}`,
   };
   function submit(event: React.FormEvent<HTMLFormElement>) {
@@ -29,7 +29,7 @@ export function Terminal() {
     if (!command) return;
     if (command === 'clear') setHistory([]);
     else {
-      setHistory(prev => [...prev.slice(-12), { type: 'command', text: command }, { type: 'response', text: outputs[command] ?? (command === 'github' ? 'Opening public GitHub profile…' : command === 'resume' ? 'Downloading original resume…' : `Unknown command: ${command}. Try 'help'.`) }]);
+      setHistory(prev => [...prev.slice(-12), { type: 'command', text: command }, { type: 'response', text: outputs[command] ?? (command === 'github' ? 'Opening public GitHub profile…' : command === 'resume' ? 'Downloading resume…' : `Unknown command: ${command}. Try 'help'.`) }]);
       if (command === 'github') window.open(profile.github, '_blank', 'noopener,noreferrer');
       if (command === 'resume') {
         const link = document.createElement('a'); link.href = profile.resume; link.download = 'Yadhaeshwar_S_Resume.pdf'; link.click();
