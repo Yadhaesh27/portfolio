@@ -36,6 +36,7 @@ export type Project = {
   year: string;
   status: string;
   repo?: string;
+  playStore?: string;
   verifiedRepo?: boolean;
   featured?: boolean;
   motif: 'flow' | 'shield' | 'waves' | 'map' | 'scales' | 'pulse';
@@ -76,6 +77,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'justra', index: '03', title: 'JUSTRA AI', overline: 'MOBILE LEGAL INTELLIGENCE', category: 'AI / ML',
+    playStore: 'https://play.google.com/store/apps/details?id=com.justra.app',
     summary: 'A privacy-centric mobile legal guidance app launched on Google Play, with actionable dispute-resolution workflows, English/Tamil voice interaction and secure document storage.',
     elevator: 'Making complex legal information easier to navigate, while protecting personal documents.',
     tags: ['Mobile Application', 'NLP', 'Biometrics', 'AES-256'], year: '2026', status: 'Launched on Google Play', featured: true, motif: 'scales', theme: 'cyan',
