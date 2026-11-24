@@ -10,7 +10,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/yadhaeshwar-s',
   github: 'https://github.com/Yadhaesh27',
   githubUsername: 'Yadhaesh27',
-  resume: '/Yadhaeshwar_S_Resume.pdf',
+  resume: '/Yadhaeshwar_S_Resume.pdf?v=20261124',
   // Optional: place your portrait at public/portrait.jpg and set this to '/portrait.jpg'.
   // Until then, the site uses the genuine public GitHub avatar, with a YS fallback.
   portrait: '',
